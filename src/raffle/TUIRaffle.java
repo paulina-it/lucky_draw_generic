@@ -21,6 +21,7 @@ public class TUIRaffle {
 
 	private Raffle raffle;
 	private Scanner keyboard;
+	private int ticketLimit;
 		
 	/**
 	 * Constructor
@@ -34,6 +35,11 @@ public class TUIRaffle {
 		keyboard = new Scanner(System.in);
 		
 		setUpPrizes();
+	}
+
+
+	public int getTicketLimit() {
+		return ticketLimit;
 	}
 	
 	/*
@@ -111,6 +117,12 @@ public class TUIRaffle {
 
 	}
 
+	public void setTicketLimit() {
+		System.out.println("How many tickets do you want to sell? ");
+		String ticketLimit = keyboard.nextLine();
+		this.ticketLimit = Integer.parseInt(ticketLimit);
+	}
+
 	/*
 	 * Get an integer from the specified input medium.
 	 * This method will persist until the input is an integer.
@@ -135,12 +147,13 @@ public class TUIRaffle {
 		
 		// Set up the raffle
 		System.out.println("> Setting up the raffle...");
-		TUIRaffle tui = new TUIRaffle(new Raffle("Cancer Research"));
+		TUIRaffle tui = new TUIRaffle(new Raffle("Cancer Research", 10));
 
+		tui.setTicketLimit();
 		
 		// Simulate selling tickets in 5 transactions
 		System.out.println("> Selling tickets...");
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < tui.getTicketLimit(); i++) {
 			tui.sellTickets();
 		}
 		

@@ -24,15 +24,16 @@ public class Raffle {
      */
     private Box<Prize> prizesBox;
 
-
     /* !!!! All sold tickets are kept in a box.
      * Define an instance variable for keeping track of
      * the tickets that have been sold in this raffle.
      */
     private Box<Ticket> soldTicketsBox;
+    private double ticketPrice;
+    private double moneyRaised;
 
 
-    public Raffle(String title) {
+    public Raffle(String title, double ticketPrice) {
 
         this.title = "Raffle for " + title;
 
@@ -41,6 +42,7 @@ public class Raffle {
          */
         this.prizesBox = new Box<>();
         this.soldTicketsBox = new Box<>();
+        this.ticketPrice = ticketPrice;
     }
 
     /**
@@ -51,6 +53,7 @@ public class Raffle {
     public String title() {
         return title;
     }
+
 
     /**
      * Add a prize to the prize box.
@@ -75,6 +78,7 @@ public class Raffle {
          * by invoking the method of a Box object.
          */
         soldTicketsBox.put(new Ticket(buyer));
+        moneyRaised += ticketPrice;
     }
 
     /**
